@@ -1,0 +1,114 @@
+$grey: #333
+$grey-bg: #404040
+$grey-border: #ccc
+  
+@import './reset'
+@import './elements'
+
+.gameActions
+  display: flex
+  justify-content: center
+  padding: 0.5em 0
+
+  button
+    margin: 1em 0.5em
+
+.stickToCursor
+  pointer-events: none
+  position: fixed
+  transition: transform 0.23s
+  z-index: 6
+
+.TheGame
+  &Main
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+  &.tileIsSelected
+    cursor: crosshair
+
+.GameBoard
+  display: flex
+  flex-wrap: wrap
+  justify-content: flex-end
+  position: relative
+  width: 480px
+  z-index: 3
+  &Square
+    background: white
+    border-radius: 2px
+    color: $grey
+    font-size: 2rem
+    line-height: 30px
+    margin: 1px
+    max-height: 30px
+    max-width: 30px
+    min-height: 30px
+    min-width: 30px
+    text-align: center
+    text-transform: uppercase
+    &.empty
+      background: $grey-bg
+
+.GameRack
+  display: flex
+  justify-content: center
+  position: relative
+  z-index: 9
+  
+  &Square
+    border: 1px solid $grey-border
+    border-radius: 6px
+    height: 60px
+    line-height: 60px
+    margin: 0 6px
+    text-align: center
+    text-transform: uppercase
+    width: 60px
+
+  &Tile
+    border-radius: 6px
+    cursor: pointer
+    height: 60px
+    font-size: 2rem
+    width: 60px
+    z-index: 7
+    &.active
+      background: $grey-border
+      color: $grey
+    &.empty
+      cursor: initial
+
+.GameMessages
+  font-size: 1.2rem
+  padding: 1em
+  width: 480px
+
+@media (min-width: 980px)
+  .TheGame
+    display: flex
+    flex-direction: row-reverse
+
+@media (min-width: 1180px)
+  .GameBoard
+    width: 660px  
+    &Square
+      line-height: 40px
+      max-height: 40px
+      max-width: 40px
+      min-height: 40px
+      min-width: 40px
+
+@media (min-width: 1400px)
+  .GameBoard
+    width: 840px
+    &Square
+      line-height: 50px
+      margin: 2px
+      max-height: 50px
+      max-width: 50px
+      min-height: 50px
+      min-width: 50px
+
+  .GameMessages
+    padding: 1em 2em
