@@ -1,18 +1,9 @@
 <script setup lang="ts">
 import { state } from '@/main'
 import { type TileInterface } from '../assets/interfaces'
-import { followCursor } from '../assets/helpers'
+import { detachTileFromCursor, followCursor } from '../assets/helpers'
 
-const detachTileFromCursor = (rackIndex: number) => {
-  console.log('rackIndex', rackIndex)
-  document.removeEventListener('mousemove', followCursor, true)
-  const tileElement: HTMLElement | null = document.querySelector(`#rack_${rackIndex}`)
-  if(tileElement) {
-    tileElement.style.transform = 'none'
-  } 
-}
-
-const handleBoardTileClick = (boardTile: TileInterface) => {
+const handleBoardSquareClick = (boardTile: TileInterface) => {
   const { boardTiles, rackTiles, selectedTile } = state.value
 
   // When clicking on an empty tile
@@ -69,20 +60,19 @@ const handleBoardTileClick = (boardTile: TileInterface) => {
     selectedTile: null, // Reset the selected tile now that it's on the board
     totalTilesPlayed: state.value.totalTilesPlayed + 1 // Keep track of no. of played tiles
   }
-
 }
 </script>
 
 <template>
-<p align="center">This game is still in development. Check back soon to see the progress.</p>
+<p>This game is still in development. Check back soon to see the progress.</p>
 <div class="GameBoard">
   <div
     v-for="(tile, index) in state.boardTiles"
     class="GameBoardSquare"
     :class="{ empty: tile.letter === '' }"
-    :id="`boardtile`"
+    :id="`boardtile${index}`"
     :key="index"
-    @click="() => handleBoardTileClick(tile)"
+    @click="() => handleBoardSquareClick(tile)"
   >
     {{ state.boardTiles[index].letter }}
   </div>

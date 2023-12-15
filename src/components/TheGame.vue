@@ -8,7 +8,7 @@ import GameRack from './GameRack.vue'
 <template>
   <div class="TheGame" :class="{ tileIsSelected: !!state.selectedTile }">
     <GameMessages />
-    <div class="theGameMain">
+    <div class="TheGameMain">
       <GameBoard />
       <GameRack />
     </div>

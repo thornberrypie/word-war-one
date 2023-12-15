@@ -1,6 +1,16 @@
 import { state } from '@/main'
 import { BagOfLetters, BoardLength, RackLength } from './constants'
 
+export const detachTileFromCursor = (rackIndex:number|null, killListener:boolean = true) => {
+  const tileElement: HTMLElement | null = document.querySelector(`#rack_${rackIndex}`)
+  if(tileElement) {
+    tileElement.style.transform = 'none'
+  }
+  if(killListener) {
+    document.removeEventListener('mousemove', followCursor, true)
+  }
+}
+
 // Pick a random letter from a full bag
 export const getRandomLetter = () => BagOfLetters[Math.floor(Math.random()*BagOfLetters.length)]
 
@@ -41,8 +51,8 @@ export const followCursor = (event: any) => {
     const eventX = event ? event.clientX - rackTile.offsetLeft : rackTile.offsetLeft
     const eventY = event ? event.clientY - rackTile.offsetTop : rackTile.offsetTop
 
-    const xValue = eventX - 15
-    const yValue = eventY - 43
+    const xValue = eventX - 10
+    const yValue = eventY - 40
     rackTile.style.transform = `translateX(${xValue}px)`
     rackTile.style.transform += `translateY(${yValue}px)`
   }        

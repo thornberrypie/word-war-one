@@ -1,7 +1,8 @@
 $grey: #333
 $grey-bg: #404040
 $grey-border: #ccc
-  
+$rack-tile-size: 50px
+
 @import './reset'
 @import './elements'
 
@@ -20,10 +21,13 @@ $grey-border: #ccc
   z-index: 6
 
 .TheGame
+  align-items: center
+  display: flex
+  flex-direction: column
   &Main
     display: flex
     flex-direction: column
-    align-items: flex-end
+    align-items: center
   &.tileIsSelected
     cursor: crosshair
 
@@ -55,23 +59,23 @@ $grey-border: #ccc
   justify-content: center
   position: relative
   z-index: 9
-  
+
   &Square
     border: 1px solid $grey-border
-    border-radius: 6px
-    height: 60px
-    line-height: 60px
-    margin: 0 6px
+    border-radius: 5px
+    height: $rack-tile-size
+    line-height: $rack-tile-size
+    margin: 0 5px
     text-align: center
     text-transform: uppercase
-    width: 60px
+    width: $rack-tile-size
 
   &Tile
-    border-radius: 6px
+    border-radius: 5px
     cursor: pointer
-    height: 60px
+    height: $rack-tile-size
     font-size: 2rem
-    width: 60px
+    width: $rack-tile-size
     z-index: 7
     &.active
       background: $grey-border
@@ -86,12 +90,11 @@ $grey-border: #ccc
 
 @media (min-width: 980px)
   .TheGame
-    display: flex
     flex-direction: row-reverse
 
 @media (min-width: 1180px)
   .GameBoard
-    width: 660px  
+    width: 660px
     &Square
       line-height: 40px
       max-height: 40px
